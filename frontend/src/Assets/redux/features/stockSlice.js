@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const stockSlice = createSlice({
     name:"stock",
-    initalValue:{
+    initialState:{
         stock:[],
-        loading:flase,
+        loading:false,
         error:null,
     },
     reducers:{
