@@ -1,20 +1,32 @@
-import { useEffect } from 'react';
-import {useSelector,useDispatch} from 'react-redux';
-import {fetchStockRequest} from './Assets/redux/features/stockSlice'
+import {BrowserRouter,Routes,Route} from 'react-router-dom';
+
+import Layout from './Assets/pages/Layout';
+import LoginLayout from './Assets/pages/LoginLayout';
+import Login from './Assets/pages/Login';
+import SignUp from './Assets/pages/SignUp';
+
+import Dashboard from './Assets/pages/Dashboard';
+import StockList from './Assets/pages/StockList';
+import Test from './Assets/pages/Test';
+//chakra UI
 
 function App() {
-  const dispatch = useDispatch()
-  const {stock} = useSelector(state => state.stock)
-
-  useEffect(()=>{
-    dispatch(fetchStockRequest())
-  },[dispatch])
-
   return (
     <div className="App">
-        {stock && stock.map(e => (
-          <div key={e._id}>{e.name}</div>
-        ))}
+        <BrowserRouter>
+           <Routes>
+              <Route element={<LoginLayout/>}>
+                <Route path="/" element={<Login/>}></Route>
+                <Route path="/Signup" element={<SignUp/>}></Route>
+              </Route>
+
+              <Route element={<Layout/>}>                
+                <Route path='/home' element={<Dashboard/>}/>
+                <Route path='/list' element={<StockList/>}/>
+                <Route path='/test' element={<Test/>}/>
+              </Route>
+            </Routes>
+        </BrowserRouter>
     </div>
   );
 }

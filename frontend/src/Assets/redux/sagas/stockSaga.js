@@ -6,7 +6,7 @@ import {fetchStockRequest,
     fetchStockFailure,
     addStockRequest,
     addStockSucess,
-    addStockFailure } from '../features/stockSlice';
+    addStockFailure} from '../features/stockSlice';
 
 
 export function* fetchStockSaga(){
@@ -18,7 +18,7 @@ export function* fetchStockSaga(){
     }
 }
 
-export function* addStockSaga(action){
+export function* addStockSaga(action){ 
     try{
         const response = yield call(axios.post,'/api/stocks',action.payload);
         yield put(addStockSucess(response.data))
